@@ -648,7 +648,7 @@
     }
 
     async function deleteEntry(id) {
-        if (!confirm('Remover este registro permanentemente?')) return;
+        if (!confirm('Remove this record permanently?')) return;
         showLoading(true);
         try {
             const res = await fetch('/api/entries/delete', {
@@ -660,10 +660,10 @@
             if (data.success) {
                 allEntries = allEntries.filter(e => e.id !== id);
                 renderEntries(allEntries);
-                showToast('Registro excluído.', 'danger');
+                showToast('Record deleted.', 'danger');
             }
         } catch(e) {
-            showToast('Erro ao excluir.', 'danger');
+            showToast('Error deleting.', 'danger');
         }
         showLoading(false);
     }
@@ -678,9 +678,9 @@
             document.getElementById('genMeta').textContent =
                 `${data.password.length} caracteres · maiúsculas · minúsculas · números · símbolos`;
             document.getElementById('newPassword').value = data.password;
-            showToast('Senha gerada e aplicada!', 'success');
+            showToast('SPassword generated and applied!', 'success');
         } catch(e) {
-            showToast('Erro ao gerar senha.', 'danger');
+            showToast('Error generating password.', 'danger');
         }
     }
 
