@@ -257,21 +257,21 @@
 
     <div class="auth-card" id="loginCard">
         <h1>Azurion<span>Bank</span></h1>
-        <p>Seu banco de senhas privativo.</p>
-        <input type="password" id="loginPassword" placeholder="Senha mestra..." style="margin-bottom:15px;" onkeydown="if(event.key==='Enter') login()">
-        <button class="btn" style="width:100%" onclick="login()">Desbloquear Cofre</button>
-        <div class="msg error" id="loginError">Chave incorreta. Tente novamente.</div>
-        <p style="margin-top:20px; font-size:12px; cursor:pointer; color:var(--text-muted);" onclick="showSetup()">Configurar novo banco →</p>
+        <p>Your private password bank.</p>
+        <input type="password" id="loginPassword" placeholder="Master password..." style="margin-bottom:15px;" onkeydown="if(event.key==='Enter') login()">
+        <button class="btn" style="width:100%" onclick="login()">Unlock Safe</button>
+        <div class="msg error" id="loginError">Incorrect key. Please try again</div>
+        <p style="margin-top:20px; font-size:12px; cursor:pointer; color:var(--text-muted);" onclick="showSetup()">Configure new database →</p>
     </div>
 
     <div class="auth-card hidden" id="setupCard">
-        <h1>Novo <span>Banco</span></h1>
-        <p>Defina sua senha mestra vitalícia.</p>
-        <input type="password" id="setupPassword" placeholder="Crie uma senha forte (mín. 8 caracteres)" style="margin-bottom:12px;">
-        <input type="password" id="setupConfirm" placeholder="Confirme a senha" style="margin-bottom:16px;" onkeydown="if(event.key==='Enter') setupVault()">
-        <button class="btn" style="width:100%" onclick="setupVault()">Criar AzurionBank</button>
+        <h1>New <span>Bank</span></h1>
+        <p>Set your lifetime master password.</p>
+        <input type="password" id="setupPassword" placeholder="Create a strong password (minimum 8 characters)" style="margin-bottom:12px;">
+        <input type="password" id="setupConfirm" placeholder="Confirm password" style="margin-bottom:16px;" onkeydown="if(event.key==='Enter') setupVault()">
+        <button class="btn" style="width:100%" onclick="setupVault()">Create Master Key</button>
         <div class="msg error" id="setupError"></div>
-        <p onclick="showLogin()" style="margin-top:20px; font-size:12px; cursor:pointer; color:var(--text-muted);">← Voltar ao acesso</p>
+        <p onclick="showLogin()" style="margin-top:20px; font-size:12px; cursor:pointer; color:var(--text-muted);">← Back to access</p>
     </div>
 
 </div>
@@ -281,25 +281,24 @@
     <header>
         <div class="logo">Azurion<span>Bank</span>ofPasswords</div>
         <div class="header-right">
-            <span style="font-size:12px; color:var(--text-muted)">🔒 AES-256-CBC</span>
-            <button class="btn btn-outline" style="padding:8px 16px; font-size:12px;" onclick="logout()">Fechar Banco</button>
+            <button class="btn btn-outline" style="padding:8px 16px; font-size:12px;" onclick="logout()">Log out</button>
         </div>
     </header>
 
     <nav class="tabs-nav">
-        <button class="tab-btn active" id="btn-tab-list" onclick="switchTab('list')">Meus Acessos</button>
-        <button class="tab-btn" id="btn-tab-add" onclick="switchTab('add')">Novo & Gerador</button>
+        <button class="tab-btn active" id="btn-tab-list" onclick="switchTab('list')">My Accesses</button>
+        <button class="tab-btn" id="btn-tab-add" onclick="switchTab('add')">New and Generator</button>
     </nav>
 
     <!-- ABA 1: LISTAGEM -->
     <div id="tab-list" class="tab-content active">
         <div class="stats-row">
-            <div class="stat-chip">Total: <strong id="statTotal">0</strong></div>
-            <div class="stat-chip">Plataformas: <strong id="statPlatforms">0</strong></div>
-            <div class="stat-chip" style="color:var(--success)">✓ Criptografado</div>
+            <div class="stat-chip">Total number of passwords: <strong id="statTotal">0</strong></div>
+            <div class="stat-chip">Platforms: <strong id="statPlatforms">0</strong></div>
+            <div class="stat-chip" style="color:var(--success)">✓ Encrypted</div>
         </div>
         <div class="search-box">
-            <input type="text" id="searchInput" placeholder="Pesquisar por plataforma, usuário ou e-mail..." oninput="filterEntries(this.value)">
+            <input type="text" id="searchInput" placeholder="Search by platform, user, or email..." oninput="filterEntries(this.value)">
         </div>
         <div id="entriesList"></div>
     </div>
@@ -308,39 +307,39 @@
     <div id="tab-add" class="tab-content">
 
         <div class="panel">
-            <h3>⚡ Gerar Nova Senha</h3>
+            <h3>⚡Generate New Password</h3>
             <div class="gen-display" id="genResult">••••••••••••••••••</div>
-            <div class="gen-meta" id="genMeta">Clique em "Gerar" para criar uma senha segura (15-30 caracteres)</div>
+            <div class="gen-meta" id="genMeta">Click "Generate" to create a secure password (15-30 characters).</div>
             <div style="display:flex; gap:10px;">
-                <button class="btn" style="flex:2;" onclick="generateAndFill()">Gerar e Usar no Cadastro</button>
-                <button class="btn btn-secondary" style="flex:1;" onclick="copyGenerated()">Copiar</button>
+                <button class="btn" style="flex:2;" onclick="generateAndFill()">Generate and Use in Registration</button>
+                <button class="btn btn-secondary" style="flex:1;" onclick="copyGenerated()">Copy</button>
             </div>
         </div>
 
         <div class="panel">
-            <h3 id="formTitle">Cadastrar Novo Registro</h3>
+            <h3 id="formTitle">Register New Record</h3>
             <input type="hidden" id="editId" value="">
             <div style="display:grid; grid-template-columns:1fr 1fr; gap:15px; margin-bottom:15px;">
                 <div class="input-group">
-                    <label>Plataforma</label>
-                    <input type="text" id="newPlatform" placeholder="Ex: Google, Netflix">
+                    <label>Platform</label>
+                    <input type="text" id="newPlatform" placeholder="Ex: Google or Netflix (can be other's too)">
                 </div>
                 <div class="input-group">
-                    <label>Usuário</label>
-                    <input type="text" id="newUser" placeholder="Nome de usuário">
+                    <label>User</label>
+                    <input type="text" id="newUser" placeholder="User name">
                 </div>
                 <div class="input-group">
                     <label>E-mail</label>
                     <input type="email" id="newEmail" placeholder="email@exemplo.com">
                 </div>
                 <div class="input-group">
-                    <label>Senha</label>
-                    <input type="text" id="newPassword" placeholder="Sua senha ou gerada acima">
+                    <label>Password</label>
+                    <input type="text" id="newPassword" placeholder="Your password, or the one generated above.">
                 </div>
             </div>
             <div style="display:flex; gap:10px;">
-                <button class="btn" id="saveBtn" style="flex:1" onclick="saveEntry()">Salvar no Banco</button>
-                <button class="btn btn-outline hidden" id="cancelEditBtn" onclick="resetForm()">Cancelar Edição</button>
+                <button class="btn" id="saveBtn" style="flex:1" onclick="saveEntry()">Save in the Bank</button>
+                <button class="btn btn-outline hidden" id="cancelEditBtn" onclick="resetForm()">Cancel Edit</button>
             </div>
             <div class="msg error" id="formError" style="margin-top:12px;"></div>
         </div>
@@ -427,7 +426,7 @@
                 masterPassword = pw;
                 enterApp();
             } else {
-                showMsg('loginError', 'Chave incorreta. Tente novamente.');
+                showMsg('loginError', 'Incorrect key. Please try again.');
                 document.getElementById('loginPassword').value = '';
             }
         } catch(e) {
@@ -440,8 +439,8 @@
         const pw = document.getElementById('setupPassword').value;
         const confirm = document.getElementById('setupConfirm').value;
         hideMsg('setupError');
-        if (pw.length < 8) { showMsg('setupError', 'Senha precisa ter no mínimo 8 caracteres.'); return; }
-        if (pw !== confirm) { showMsg('setupError', 'As senhas não coincidem.'); return; }
+        if (pw.length < 8) { showMsg('setupError', 'The password must be at least 8 characters long.'); return; }
+        if (pw !== confirm) { showMsg('setupError', 'The passwords dont match.'); return; }
         showLoading(true);
         try {
             const res = await fetch('/api/setup', {
@@ -512,7 +511,7 @@
         list.innerHTML = entries.map(e => `
             <div class="entry-card" id="card-${e.id}">
                 <div>
-                    <div class="field-label">Plataforma</div>
+                    <div class="field-label">Platform</div>
                     <div class="field-value" style="font-weight:600; color:var(--accent); font-size:15px">${esc(e.platform)}</div>
                 </div>
                 <div>
@@ -520,7 +519,7 @@
                     <div class="field-value">${esc(e.email)}</div>
                 </div>
                 <div>
-                    <div class="field-label">Usuário</div>
+                    <div class="field-label">User</div>
                     <div class="field-value">${esc(e.username)}</div>
                 </div>
                 <div class="entry-pass-box" id="pass-${e.id}" title="Clique para copiar" onclick="copyPassword('${e.id}')">
@@ -584,8 +583,8 @@
         const password = document.getElementById('newPassword').value.trim();
 
         hideMsg('formError');
-        if (!platform) { showMsg('formError', 'O campo Plataforma é obrigatório.'); return; }
-        if (!password) { showMsg('formError', 'O campo Senha é obrigatório.'); return; }
+        if (!platform) { showMsg('formError', 'The Platform field is required.'); return; }
+        if (!password) { showMsg('formError', 'The Password field is required.'); return; }
 
         showLoading(true);
 
@@ -610,12 +609,12 @@
                 await loadEntries();
                 resetForm();
                 switchTab('list');
-                showToast(id ? 'Registro atualizado!' : 'Salvo no Banco!', 'success');
+                showToast(id ? 'Updated record!' : 'Saved at the Bank!', 'success');
             } else {
-                showMsg('formError', 'Erro ao salvar. Tente novamente.');
+                showMsg('formError', 'Error saving. Please try again.');
             }
         } catch(e) {
-            showMsg('formError', 'Erro de conexão. Tente novamente.');
+            showMsg('formError', 'Connection error. Please try again.');
         }
 
         showLoading(false);
@@ -629,8 +628,8 @@
         document.getElementById('newUser').value = e.username || '';
         document.getElementById('newEmail').value = e.email || '';
         document.getElementById('newPassword').value = e.password || '';
-        document.getElementById('formTitle').textContent = '✏️ Editando Registro';
-        document.getElementById('saveBtn').textContent = 'Atualizar Dados';
+        document.getElementById('formTitle').textContent = '✏️ Editing Record';
+        document.getElementById('saveBtn').textContent = 'Update Data';
         document.getElementById('cancelEditBtn').classList.remove('hidden');
         switchTab('add');
         window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -642,8 +641,8 @@
         document.getElementById('newUser').value = '';
         document.getElementById('newEmail').value = '';
         document.getElementById('newPassword').value = '';
-        document.getElementById('formTitle').textContent = 'Cadastrar Novo Registro';
-        document.getElementById('saveBtn').textContent = 'Salvar no Banco';
+        document.getElementById('formTitle').textContent = 'Register New Record';
+        document.getElementById('saveBtn').textContent = 'Save in the Bank';
         document.getElementById('cancelEditBtn').classList.add('hidden');
         hideMsg('formError');
     }
