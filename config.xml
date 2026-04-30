@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+  <window>
+    <title>Azurion Bank</title>
+    <width>1000</width>
+    <height>700</height>
+    <minWidth>800</minWidth>
+    <minHeight>500</minHeight>
+  </window>
+</config>
